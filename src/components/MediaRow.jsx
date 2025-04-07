@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 
 function MediaRow(props) {
   const items = props;
-  console.log(items);
   return (
     <tr>
       <td>
