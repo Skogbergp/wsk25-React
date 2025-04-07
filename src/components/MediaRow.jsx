@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 function MediaRow(props) {
   const items = props;
   console.log(items);
@@ -18,5 +20,19 @@ function MediaRow(props) {
     </tr>
   );
 }
+
+MediaRow.propTypes = {
+  item: PropTypes.shape({
+    media_id: PropTypes.number.isRequired,
+    user_id: PropTypes.number.isRequired,
+    filename: PropTypes.string.isRequired,
+    thumbnail: PropTypes.string.isRequired,
+    filesize: PropTypes.number.isRequired,
+    media_type: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    created_at: PropTypes.string.isRequired,
+  }).isRequired,
+};
 
 export default MediaRow;
