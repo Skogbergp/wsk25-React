@@ -1,22 +1,26 @@
 import PropTypes from 'prop-types';
+import SingleView from './SingleView';
 
 function MediaRow(props) {
-  const items = props;
-  console.log(items);
+  const {item, setSelectedItem} = props;
+  console.log(item);
   return (
     <tr>
       <td>
         <img
-          src={items.item.thumbnail}
-          alt={items.item.title}
+          src={item.item.thumbnail}
+          alt={item.item.title}
           style={{width: '100px', height: 'auto'}}
         />
       </td>
-      <td>{items.item.title}</td>
-      <td>{items.item.description}</td>
-      <td>{new Date(items.item.created_at).toLocaleString()}</td>
-      <td>{items.item.filesize}</td>
-      <td>{items.item.media_type}</td>
+      <td>{item.item.title}</td>
+      <td>{item.item.description}</td>
+      <td>{new Date(item.item.created_at).toLocaleString()}</td>
+      <td>{item.item.filesize}</td>
+      <td>{item.item.media_type}</td>
+      <td>
+        <button onClick={setSelectedItem}>select</button>
+      </td>
     </tr>
   );
 }

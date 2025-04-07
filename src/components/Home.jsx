@@ -36,6 +36,7 @@ const mediaArray = [
 ];
 
 import MediaRow from './MediaRow.jsx';
+import SingleView from './SingleView.jsx';
 
 function Home() {
   return (
@@ -58,6 +59,7 @@ function Home() {
           ))}
         </tbody>
       </table>
+      <SingleView item={selectedItem} setSelectedItem={setSelectedItem} />
     </>
   );
 }
