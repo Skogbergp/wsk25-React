@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 function SingleView(props) {
   const {item, setSelectedItem} = props;
   function closeDialog() {
@@ -30,4 +32,9 @@ function SingleView(props) {
     </>
   );
 }
+
+PropTypes.SingleView = {
+  item: PropTypes.object,
+  setSelectedItem: PropTypes.func.isRequired,
+};
 export default SingleView;
