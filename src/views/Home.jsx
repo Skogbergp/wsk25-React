@@ -36,12 +36,11 @@ const mediaArray = [
 ];
 
 import {useState} from 'react';
-import MediaRow from './MediaRow.jsx';
-import SingleView from './SingleView.jsx';
+import MediaRow from '../components/MediaRow.jsx';
+import SingleView from '../components/SingleView.jsx';
 
 function Home() {
   const [selectedItem, setSelectedItem] = useState(null);
-  //console.log('selectedItem', selectedItem);
   return (
     <>
       <h2>My Media</h2>
