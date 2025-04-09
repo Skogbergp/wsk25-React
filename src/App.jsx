@@ -2,6 +2,9 @@ import {Route, BrowserRouter, Routes} from 'react-router';
 import Layout from './components/Layout.jsx';
 import Home from './views/Home';
 import Single from './views/Single.jsx';
+import Profile from './views/Profile.jsx';
+import Upload from './views/Upload.jsx';
+import './App.css';
 
 function App() {
   return (
