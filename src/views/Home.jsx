@@ -18,7 +18,7 @@ function Home() {
           const url = `${import.meta.env.VITE_AUTH_API}/users/${item.user_id}`;
           const data = await fetchData(url);
 
-          return {...item, user: data};
+          return {...item, user: data.username};
         }),
       );
 
