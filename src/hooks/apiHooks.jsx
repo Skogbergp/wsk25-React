@@ -43,4 +43,24 @@ function useMedia() {
   return {mediaArray};
 }
 
-export default useMedia;
+function useAuthentication() {
+  const postLogin = async (inputs) => {
+    const fetchOptions = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(inputs),
+    };
+    const loginResult = await fetchData(
+      import.meta.env.VITE_AUTH_API + '/auth/login',
+      fetchOptions,
+    );
+    window.localStorage.setItem('token', loginResult.token);
+    return loginResult;
+  };
+  return {postLogin};
+}
+
+// Export both hooks as named exports
+export {useMedia, useAuthentication};
