@@ -24,7 +24,7 @@ function Single() {
       <h2>{item.title}</h2>
       <p>{item.description}</p>
       <p>Created at: {new Date(item.created_at).toLocaleString()}</p>
-      <p>Uploaded by: {item.user}</p>
+      <p>Uploaded by: {item.username}</p>
       <p>Filesize: {item.filesize} bytes</p>
       <button onClick={() => navigate(-1)}>Go Back</button>
     </>
