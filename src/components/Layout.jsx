@@ -1,7 +1,13 @@
+import {useState} from 'react';
 import {Outlet} from 'react-router';
 import {Link} from 'react-router';
+import {UserProvider} from '../contexts/UserContext';
 
 export default function Layout() {
+  const {handleAutoLogin} = UserProvider;
+  const [user] = useState();
+
+  handleAutoLogin;
   return (
     <div>
       <nav>
@@ -9,9 +15,12 @@ export default function Layout() {
           <li>
             <Link to="/">Home</Link>
           </li>
-          <li>
-            <Link to="/profile">Profile</Link>
-          </li>
+          {!user && (
+            <li>
+              <Link to="/profile">Profile</Link>
+            </li>
+          )}
+
           <li>
             <Link to="/upload">Upload</Link>
           </li>

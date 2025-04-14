@@ -1,6 +1,6 @@
-import {fetchData} from '../utils/fetchdata';
-import {useEffect, useState} from 'react';
 import {uniqBy} from 'lodash';
+import {useEffect, useState} from 'react';
+import {fetchData} from '../utils/fetchdata';
 
 function useMedia() {
   const [mediaArray, setMediaArray] = useState([]);
@@ -92,4 +92,4 @@ function useUser() {
 }
 
 // Export both hooks as named exports
-export {useMedia, useAuthentication, useUser};
+export {useAuthentication, useMedia, useUser};
