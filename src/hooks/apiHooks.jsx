@@ -62,5 +62,34 @@ function useAuthentication() {
   return {postLogin};
 }
 
+function useUser() {
+  const postUser = async (inputs) => {
+    const fetchOptions = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(inputs),
+    };
+    const userResult = await fetchData(
+      import.meta.env.VITE_AUTH_API + '/users',
+      fetchOptions,
+    );
+    return userResult;
+  };
+  async function getUserByToken(token) {
+    const url = import.meta.env.VITE_AUTH_API + '/users/token';
+    const fetchOptions = {
+      headers: {
+        Authorization: 'Bearer: ' + token,
+      },
+    };
+
+    const userData = await fetchData(url, fetchOptions);
+    return {userData};
+  }
+  return {getUserByToken, postUser};
+}
+
 // Export both hooks as named exports
-export {useMedia, useAuthentication};
+export {useMedia, useAuthentication, useUser};

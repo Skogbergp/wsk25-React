@@ -12,7 +12,6 @@ function LoginForm() {
   const navigate = useNavigate();
 
   const doLogin = async () => {
-    console.log(inputs);
     await postLogin(inputs);
     navigate('/');
   };

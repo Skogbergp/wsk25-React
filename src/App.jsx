@@ -4,8 +4,6 @@ import Home from './views/Home';
 import Single from './views/Single.jsx';
 import Profile from './views/Profile.jsx';
 import Upload from './views/Upload.jsx';
-
-import './App.css';
 import Login from './views/login.jsx';
 import Logout from './views/logout.jsx';
 
@@ -19,7 +17,6 @@ function App() {
           <Route path="/single" element={<Single />} />
           <Route path="/login" element={<Login />} />
           <Route path="/logout" element={<Logout />} />
-          {/* Redirect to home if no other route matches */}
 
           <Route path="/" element={<Home />} />
         </Route>
