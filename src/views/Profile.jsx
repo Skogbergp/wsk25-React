@@ -3,7 +3,6 @@ import {useUser} from '../hooks/apiHooks.jsx';
 import {useEffect, useState} from 'react';
 
 function Profile() {
-  const token = window.localStorage.getItem('token');
   const [user, setUser] = useState(null);
   const {getUserByToken} = useUser();
 
