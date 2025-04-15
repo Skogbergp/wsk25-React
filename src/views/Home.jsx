@@ -7,7 +7,7 @@ import '../index.css';
 function Home() {
   const [selectedItem, setSelectedItem] = useState(null);
   const mediaArray = useMedia().mediaArray;
-  console.log(mediaArray);
+
   return (
     <>
       <h2>My Media</h2>

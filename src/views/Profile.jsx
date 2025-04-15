@@ -16,7 +16,6 @@ function Profile() {
     };
     fetchUser();
   }, []);
-  console.log('user', user);
   return (
     <>
       <h2>My Profile</h2>

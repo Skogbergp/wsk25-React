@@ -1,6 +1,6 @@
-import {fetchData} from '../utils/fetchdata';
-import {useEffect, useState} from 'react';
 import {uniqBy} from 'lodash';
+import {useEffect, useState} from 'react';
+import {fetchData} from '../utils/fetchdata';
 
 function useMedia() {
   const [mediaArray, setMediaArray] = useState([]);
@@ -12,8 +12,6 @@ function useMedia() {
       );
 
       const uniqueUserIds = uniqBy(mediaData, 'user_id');
-
-      console.log('uniqueUserIds', uniqueUserIds);
 
       const authApiUrl = import.meta.env.VITE_AUTH_API;
       const userData = await Promise.all(
@@ -52,12 +50,10 @@ function useAuthentication() {
       },
       body: JSON.stringify(inputs),
     };
-    const loginResult = await fetchData(
+    return await fetchData(
       import.meta.env.VITE_AUTH_API + '/auth/login',
       fetchOptions,
     );
-    window.localStorage.setItem('token', loginResult.token);
-    return loginResult;
   };
   return {postLogin};
 }
@@ -92,4 +88,4 @@ function useUser() {
 }
 
 // Export both hooks as named exports
-export {useMedia, useAuthentication, useUser};
+export {useAuthentication, useMedia, useUser};
