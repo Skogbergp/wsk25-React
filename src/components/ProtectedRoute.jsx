@@ -4,7 +4,6 @@ import {useUserContext} from '../hooks/contextHooks';
 const ProtectedRoute = ({children}) => {
   const {user} = useUserContext();
   const location = useLocation();
-  console.log(location.pathname ? location.pathname : '/');
 
   if (!user) {
     return <Navigate to={'/'} />;
