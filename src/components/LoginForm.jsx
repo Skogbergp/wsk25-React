@@ -11,7 +11,7 @@ function LoginForm() {
 
   const doLogin = async () => {
     try {
-      handleLogin(inputs);
+      await handleLogin(inputs);
     } catch (e) {
       alert(e.message);
     }

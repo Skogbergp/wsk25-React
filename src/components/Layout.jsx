@@ -1,13 +1,14 @@
-import {useState} from 'react';
 import {Outlet} from 'react-router';
 import {Link} from 'react-router';
-import {UserProvider} from '../contexts/UserContext';
+import {useUserContext} from '../hooks/contextHooks';
+import {useEffect} from 'react';
 
 export default function Layout() {
-  const {handleAutoLogin} = UserProvider;
-  const [user] = useState();
+  const {handleAutoLogin} = useUserContext();
+  useEffect(() => {
+    handleAutoLogin();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  handleAutoLogin;
   return (
     <div>
       <nav>
@@ -15,11 +16,10 @@ export default function Layout() {
           <li>
             <Link to="/">Home</Link>
           </li>
-          {!user && (
-            <li>
-              <Link to="/profile">Profile</Link>
-            </li>
-          )}
+
+          <li>
+            <Link to="/profile">Profile</Link>
+          </li>
 
           <li>
             <Link to="/upload">Upload</Link>

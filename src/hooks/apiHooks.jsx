@@ -13,8 +13,6 @@ function useMedia() {
 
       const uniqueUserIds = uniqBy(mediaData, 'user_id');
 
-      console.log('uniqueUserIds', uniqueUserIds);
-
       const authApiUrl = import.meta.env.VITE_AUTH_API;
       const userData = await Promise.all(
         uniqueUserIds.map(
@@ -52,12 +50,10 @@ function useAuthentication() {
       },
       body: JSON.stringify(inputs),
     };
-    const loginResult = await fetchData(
+    return await fetchData(
       import.meta.env.VITE_AUTH_API + '/auth/login',
       fetchOptions,
     );
-    window.localStorage.setItem('token', loginResult.token);
-    return loginResult;
   };
   return {postLogin};
 }
