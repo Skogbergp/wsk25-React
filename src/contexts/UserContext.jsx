@@ -24,8 +24,6 @@ const UserProvider = ({children}) => {
     try {
       localStorage.removeItem('token');
       setUser(null);
-      // TODO: remove token from local storage
-      // TODO: set user to null
 
       navigate('/');
     } catch (e) {
