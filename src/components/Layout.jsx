@@ -5,6 +5,7 @@ import {useEffect} from 'react';
 
 export default function Layout() {
   const {handleAutoLogin} = useUserContext();
+  const {user} = useUserContext();
   useEffect(() => {
     handleAutoLogin();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -16,20 +17,26 @@ export default function Layout() {
           <li>
             <Link to="/">Home</Link>
           </li>
+          {user && (
+            <>
+              <li>
+                <Link to="/profile">Profile</Link>
+              </li>
 
-          <li>
-            <Link to="/profile">Profile</Link>
-          </li>
+              <li>
+                <Link to="/upload">Upload</Link>
+              </li>
 
-          <li>
-            <Link to="/upload">Upload</Link>
-          </li>
-          <li>
-            <Link to="/login">Login</Link>
-          </li>
-          <li>
-            <Link to="/logout">Logout</Link>
-          </li>
+              <li>
+                <Link to="/logout">Logout</Link>
+              </li>
+            </>
+          )}
+          {!user && (
+            <li>
+              <Link to="/login">Login</Link>
+            </li>
+          )}
         </ul>
       </nav>
       <main>

@@ -1,7 +1,6 @@
 import {createContext, useState} from 'react';
+import {useLocation, useNavigate} from 'react-router';
 import {useAuthentication, useUser} from '../hooks/apiHooks';
-import {useNavigate} from 'react-router';
-import {set} from 'lodash';
 
 const UserContext = createContext(null);
 
@@ -10,6 +9,7 @@ const UserProvider = ({children}) => {
   const {postLogin} = useAuthentication();
   const {getUserByToken} = useUser();
   const navigate = useNavigate();
+  const location = useLocation();
 
   // login, logout and autologin functions are here instead of components
   const handleLogin = async (credentials) => {
@@ -35,20 +35,15 @@ const UserProvider = ({children}) => {
   const handleAutoLogin = async () => {
     try {
       const token = localStorage.getItem('token');
-      if (!token) {
-        return;
+
+      if (token) {
+        const userData = await getUserByToken(token);
+        setUser(userData.userData.user);
       }
-      const userData = await getUserByToken(token);
-      if (!userData) {
-        return;
-      }
-      console.log('userData', userData);
-      setUser(userData.user);
-      // TODO: get token from local storage
-      // TODO: if token exists, get user data from API
-      // TODO: set user to state
-      navigate('/');
+
+      navigate(location.pathname);
     } catch (e) {
+      handleLogout();
       console.log(e.message);
     }
   };
@@ -61,4 +56,4 @@ const UserProvider = ({children}) => {
     </UserContext.Provider>
   );
 };
-export {UserProvider, UserContext};
+export {UserContext, UserProvider};
