@@ -4,8 +4,8 @@ import {useUserContext} from '../hooks/contextHooks';
 import {useEffect} from 'react';
 
 export default function Layout() {
-  const {handleAutoLogin} = useUserContext();
-  const {user} = useUserContext();
+  const {handleAutoLogin, user} = useUserContext();
+
   useEffect(() => {
     handleAutoLogin();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
