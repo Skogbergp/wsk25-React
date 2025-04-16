@@ -31,6 +31,14 @@ function App() {
                 </ProtectedRoute>
               }
             />
+            <Route
+              path="/upload"
+              element={
+                <ProtectedRoute>
+                  <Upload />
+                </ProtectedRoute>
+              }
+            />
             <Route path="/single" element={<Single />} />
             <Route path="/login" element={<Login />} />
             <Route path="/logout" element={<Logout />} />
