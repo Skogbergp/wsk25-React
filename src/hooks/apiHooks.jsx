@@ -58,7 +58,16 @@ function useMedia() {
     // TODO: post the data to Media API and get the data as MediaResponse
     // TODO: return the data
   };
-  return {mediaArray, postMedia};
+  const deleteMedia = async (id, token) => {
+    return fetchData(import.meta.env.VITE_MEDIA_API + '/media/' + id, {
+      method: 'DELETE',
+      headers: {
+        Authorization: 'Bearer: ' + token,
+      },
+    });
+  };
+  const modifyMedia = async () => {};
+  return {mediaArray, postMedia, deleteMedia, modifyMedia};
 }
 
 function useAuthentication() {
