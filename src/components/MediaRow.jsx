@@ -4,12 +4,12 @@ import {Link} from 'react-router';
 function MediaRow(props) {
   const {item} = props;
   return (
-    <tr>
+    <tr className="*:border-2 *:border-stone-200 *:p-4">
       <td>
         <img
           src={item.thumbnail}
           alt={item.title}
-          style={{width: '100px', height: 'auto'}}
+          className="w-2xs object-cover"
         />
       </td>
       <td>{item.title}</td>
@@ -18,8 +18,16 @@ function MediaRow(props) {
       <td>{new Date(item.created_at).toLocaleString('fi-FI')}</td>
       <td>{item.filesize}</td>
       <td>{item.media_type}</td>
-      <td>
-        <Link to="/single" state={{item}}>
+      <td className="p-0!">
+        <Link
+          to="/single"
+          state={{item}}
+          className="p-8 hover:bg-stone-50 hover:text-stone-950"
+          onClick={(event) => {
+            event.preventDefault();
+            si;
+          }}
+        >
           Show
         </Link>
       </td>

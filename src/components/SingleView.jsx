@@ -8,7 +8,7 @@ function SingleView(props) {
   return (
     <>
       {item && (
-        <dialog open={item}>
+        <dialog open={item} className="fixed top-1/2 left-1/2">
           {item.media_type.includes('video') ? (
             <video
               src={item.filename}

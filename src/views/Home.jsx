@@ -13,7 +13,7 @@ function Home() {
       <h2>My Media</h2>
       <table>
         <thead>
-          <tr>
+          <tr className="*:border-2 *:border-stone-200 *:p-4">
             <th>Thumbnail</th>
             <th>Title</th>
             <th>Description</th>
