@@ -24,9 +24,12 @@ const Upload = () => {
   const doUpload = async () => {
     try {
       const token = localStorage.getItem('token');
+      console.log('first');
       const fileResult = await postFile(file, token);
+      console.log('fileResult', fileResult);
 
-      await postMedia(fileResult.data, inputs, token);
+      const result = await postMedia(fileResult.data, inputs, token);
+      console.log('result', result);
       navigate('/');
     } catch (e) {
       console.log(e.message);
@@ -43,28 +46,21 @@ const Upload = () => {
       <form onSubmit={handleSubmit}>
         <TextInput
           label="Title"
-         name="title"
-         type="text"
-         id="title"
-         onChange={handleInputChange} />
-        <div>
-          <label htmlFor="title">Title</label>
-          <input
-            name="title"
-            type="text"
-            id="title"
-            onChange={handleInputChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="description">Description</label>
-          <textarea
-            name="description"
-            rows={5}
-            id="description"
-            onChange={handleInputChange}
-          ></textarea>
-        </div>
+          name="title"
+          type="text"
+          id="title"
+          onChange={handleInputChange}
+        />
+
+        <TextInput
+          label="Description"
+          name="description"
+          type="textarea"
+          rows={5}
+          id="description"
+          onChange={handleInputChange}
+        />
+
         <div>
           <label htmlFor="file">File</label>
           <input
