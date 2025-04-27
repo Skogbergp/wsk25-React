@@ -3,6 +3,7 @@ import {Link, useNavigate} from 'react-router';
 import {useUserContext} from '../hooks/contextHooks';
 import {useMedia} from '../hooks/apiHooks';
 import {useState} from 'react';
+import Likes from './Likes.jsx';
 
 function MediaRow(props) {
   const {user} = useUserContext();
@@ -103,6 +104,7 @@ function MediaRow(props) {
           <td className="border border-stone-300">{item.filesize}</td>
           <td className="border border-stone-300">{item.media_type}</td>
           <td className="flex gap-2 border border-stone-300 p-4">
+            <Likes />
             <Link
               to="/single"
               state={{item}}

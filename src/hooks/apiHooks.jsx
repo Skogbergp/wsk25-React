@@ -156,5 +156,41 @@ function useFile() {
 
   return {postFile};
 }
+function useLike() {
+  const getLikes = async () => {
+    const url = import.meta.env.VITE_MEDIA_API + '/likes/';
+    const fetchOptions = {
+      method: 'GET',
+      headers: {
+        Authorization: 'Bearer: ' + window.localStorage.getItem('token'),
+      },
+    };
+    return await fetchData(url, fetchOptions);
+  };
+  const postLike = async (id, token) => {
+    const url = import.meta.env.VITE_MEDIA_API + '/likes/';
+    const fetchOptions = {
+      method: 'POST',
+      headers: {
+        Authorization: 'Bearer: ' + token,
+      },
+      body: JSON.stringify({id}),
+    };
+    return await fetchData(url, fetchOptions);
+  };
+  const deleteLike = async (id, token) => {
+    const url = import.meta.env.VITE_MEDIA_API + '/likes/' + id;
+    const fetchOptions = {
+      method: 'DELETE',
+      headers: {
+        Authorization: 'Bearer: ' + token,
+      },
+      body: JSON.stringify({id}),
+    };
+    return await fetchData(url, fetchOptions);
+  };
 
-export {useAuthentication, useMedia, useUser, useFile};
+  return {postLike, deleteLike};
+}
+
+export {useAuthentication, useMedia, useUser, useFile, useLike};
