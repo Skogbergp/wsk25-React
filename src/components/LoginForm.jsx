@@ -27,27 +27,28 @@ function LoginForm() {
     <>
       <h1>Login</h1>
       <form onSubmit={handleSubmit}>
+        <TextInput
+          label="Username"
+          name="username"
+          type="text"
+          id="loginuser"
+          onChange={handleInputChange}
+        />
 
+        <TextInput
+          label="Password"
+          name="password"
+          type="password"
+          id="loginpassword"
+          onChange={handleInputChange}
+        />
 
-           <TextInput
-            label="Username"
-            name="username"
-            type="text"
-            id="loginuser"
-            onChange={handleInputChange}
-          />
-
-
-
-          <TextInput
-            label="Password"
-            name="password"
-            type="password"
-            id="loginpassword"
-            onChange={handleInputChange}
-          />
-
-        <button type="submit">Login</button>
+        <button
+          className="rounded border-2 bg-stone-400 text-stone-800"
+          type="submit"
+        >
+          Login
+        </button>
       </form>
     </>
   );

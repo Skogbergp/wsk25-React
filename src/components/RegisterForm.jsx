@@ -1,6 +1,7 @@
 import {useNavigate} from 'react-router';
 import {useUser} from '../hooks/apiHooks.jsx';
 import useForm from '../hooks/formHooks';
+import TextInput from './ui/TextInput.jsx';
 export default function RegisterForm() {
   const initValues = {
     username: '',
@@ -23,35 +24,37 @@ export default function RegisterForm() {
     <>
       <h1>Register</h1>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="registeruser">Username</label>
-          <input
-            name="username"
-            type="text"
-            id="registeruser"
-            onChange={handleInputChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="email">Email</label>
-          <input
-            name="email"
-            type="email"
-            id="email"
-            onChange={handleInputChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="newpassword">Password</label>
-          <input
-            name="password"
-            type="password"
-            id="newpassword"
-            onChange={handleInputChange}
-          />
-        </div>
+        <TextInput
+          label="Username"
+          name="username"
+          type="text"
+          id="registeruser"
+          onChange={handleInputChange}
+        />
 
-        <button type="submit">Register</button>
+        <TextInput
+          label="Email"
+          name="email"
+          type="email"
+          id="email"
+          onChange={handleInputChange}
+        />
+
+        <TextInput
+          label="Password"
+          name="password"
+          type="password"
+          id="newpassword"
+          onChange={handleInputChange}
+        />
+
+        <button
+          className="rounded border-2 bg-stone-400 text-stone-800"
+          text
+          type="submit"
+        >
+          Register
+        </button>
       </form>
     </>
   );
