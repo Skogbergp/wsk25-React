@@ -28,14 +28,12 @@ export default function Likes(props) {
 
   console.log('userLikes', userLikes);
 
-  async function handlePostLike() {
-    const result = await postLike(
-      item.media_id,
-      window.localStorage.getItem('token'),
-    );
+  function handlePostLike() {
+    postLike(item.media_id, window.localStorage.getItem('token'));
   }
   function handleDeleteLike() {
     const likeId = userLikes.find((like) => like.media_id === item.media_id);
+    console.log('likeId', likeId);
     const result = deleteLike(likeId, window.localStorage.getItem('token'));
     console.log('result', result);
   }
