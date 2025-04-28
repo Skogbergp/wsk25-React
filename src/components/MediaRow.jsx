@@ -28,7 +28,7 @@ function MediaRow(props) {
   }
 
   function handleSave() {
-    console.log('Save changes:', editedItem);
+    //console.log('Save changes:', editedItem);
     setIsEditing(false);
     modifyMedia(item.media_id, editedItem);
     // Add logic to save changes (e.g., API call)

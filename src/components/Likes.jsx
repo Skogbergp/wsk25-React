@@ -2,7 +2,6 @@
 import {useEffect, useState} from 'react';
 import {useUserContext} from '../hooks/contextHooks';
 import {useLike} from '../hooks/apiHooks';
-import {func} from 'prop-types';
 
 export default function Likes(props) {
   const {item} = props;
@@ -11,42 +10,48 @@ export default function Likes(props) {
   const [userLikes, setUserLikes] = useState([]);
   const {getLikesByMediaId, postLike, deleteLike, getLikesByUser} = useLike();
 
+  const fetchLikes = async () => {
+    const result = await getLikesByMediaId(item.media_id);
+    const userResult = await getLikesByUser(
+      user.user_id,
+      window.localStorage.getItem('token'),
+    );
+    setUserLikes(userResult);
+    setLikes(result);
+  };
+
   useEffect(() => {
-    const fetchLikes = async () => {
-      const result = await getLikesByMediaId(item.media_id);
-
-      const userResult = await getLikesByUser(
-        user.user_id,
-        window.localStorage.getItem('token'),
-      );
-      setUserLikes(userResult);
-
-      setLikes(result);
-    };
     fetchLikes();
   }, []);
 
-  console.log('userLikes', userLikes);
-
-  function handlePostLike() {
-    postLike(item.media_id, window.localStorage.getItem('token'));
+  async function handlePostLike() {
+    await postLike(item.media_id, window.localStorage.getItem('token'));
+    await fetchLikes();
   }
-  function handleDeleteLike() {
-    const likeId = userLikes.find((like) => like.media_id === item.media_id);
-    console.log('likeId', likeId);
-    const result = deleteLike(likeId, window.localStorage.getItem('token'));
-    console.log('result', result);
+
+  async function handleDeleteLike() {
+    const liked = userLikes.find((like) => like.media_id === item.media_id);
+    const likeId = liked.like_id;
+
+    await deleteLike(likeId, window.localStorage.getItem('token'));
+    await fetchLikes();
   }
 
   return (
     <>
-      <button type="button" onClick={handlePostLike}>
-        ❤️
-      </button>
-      <button type="button" onClick={handleDeleteLike}>
-        💔
-      </button>
-      <p>{likes ? likes.length : 0}</p>
+      {userLikes.find((like) => like.media_id === item.media_id) ? (
+        <button type="button" onClick={handleDeleteLike}>
+          💔
+        </button>
+      ) : (
+        <button type="button" onClick={handlePostLike}>
+          ❤️
+        </button>
+      )}
+      <div className="flex">
+        <label>likes: </label>
+        <p>{likes ? ' ' + likes.length : ' ' + 0}</p>
+      </div>
     </>
   );
 }

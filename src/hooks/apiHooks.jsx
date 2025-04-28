@@ -73,7 +73,7 @@ function useMedia() {
       console.error('No token found');
       return;
     }
-    console.log('id', id);
+
     const url = import.meta.env.VITE_MEDIA_API + '/media/' + id;
     const fetchOptions = {
       method: 'PUT',
@@ -138,10 +138,7 @@ function useFile() {
     const formData = new FormData();
     formData.append('file', file);
     const url = import.meta.env.VITE_UPLOAD_SERVER + '/upload';
-    console.log('url', url);
-    console.log('token', token);
-    console.log('file', file);
-    console.log('formData', formData);
+
     const fetchOptions = {
       method: 'POST',
       headers: {
@@ -167,7 +164,7 @@ function useLike() {
       },
       body: JSON.stringify({media_id}), // Use the correct key
     };
-    console.log('fetchOptions', fetchOptions);
+
     return await fetchData(url, fetchOptions);
   };
   const deleteLike = async (id, token) => {
@@ -180,7 +177,7 @@ function useLike() {
       body: JSON.stringify({id}),
     };
     const result = await fetchData(url, fetchOptions);
-    console.log('result', result);
+
     return result;
   };
   const getLikesByMediaId = async (id) => {

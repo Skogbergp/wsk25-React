@@ -16,23 +16,20 @@ const Upload = () => {
 
   const handleFileChange = (evt) => {
     if (evt.target.files) {
-      console.log(evt.target.files[0]);
-
       setFile(evt.target.files[0]);
     }
   };
   const doUpload = async () => {
     try {
       const token = localStorage.getItem('token');
-      console.log('first');
+
       const fileResult = await postFile(file, token);
-      console.log('fileResult', fileResult);
 
       const result = await postMedia(fileResult.data, inputs, token);
-      console.log('result', result);
+
       navigate('/');
     } catch (e) {
-      console.log(e.message);
+      console.error(e.message);
     }
   };
 
