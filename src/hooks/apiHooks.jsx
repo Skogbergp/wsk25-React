@@ -176,9 +176,8 @@ function useLike() {
       },
       body: JSON.stringify({id}),
     };
-    const result = await fetchData(url, fetchOptions);
+    return await fetchData(url, fetchOptions);
 
-    return result;
   };
   const getLikesByMediaId = async (id) => {
     const url = import.meta.env.VITE_MEDIA_API + '/likes/bymedia/' + id;
