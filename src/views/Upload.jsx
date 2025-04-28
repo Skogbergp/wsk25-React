@@ -80,7 +80,11 @@ const Upload = () => {
           alt="preview"
           width="200"
         />
-        <button type="submit" disabled={!(file && inputs.title?.length > 3)}>
+        <button
+          className="rounded bg-amber-400 text-stone-700"
+          type="submit"
+          disabled={!(file && inputs.title?.length > 3)}
+        >
           Upload
         </button>
       </form>

@@ -157,25 +157,17 @@ function useFile() {
   return {postFile};
 }
 function useLike() {
-  const getLikes = async () => {
-    const url = import.meta.env.VITE_MEDIA_API + '/likes/';
-    const fetchOptions = {
-      method: 'GET',
-      headers: {
-        Authorization: 'Bearer: ' + window.localStorage.getItem('token'),
-      },
-    };
-    return await fetchData(url, fetchOptions);
-  };
-  const postLike = async (id, token) => {
-    const url = import.meta.env.VITE_MEDIA_API + '/likes/';
+  const postLike = async (media_id, token) => {
+    const url = import.meta.env.VITE_MEDIA_API + '/likes';
     const fetchOptions = {
       method: 'POST',
       headers: {
         Authorization: 'Bearer: ' + token,
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify({id}),
+      body: JSON.stringify({media_id}), // Use the correct key
     };
+    console.log('fetchOptions', fetchOptions);
     return await fetchData(url, fetchOptions);
   };
   const deleteLike = async (id, token) => {
@@ -187,10 +179,32 @@ function useLike() {
       },
       body: JSON.stringify({id}),
     };
+    const result = await fetchData(url, fetchOptions);
+    console.log('result', result);
+    return result;
+  };
+  const getLikesByMediaId = async (id) => {
+    const url = import.meta.env.VITE_MEDIA_API + '/likes/bymedia/' + id;
+    const fetchOptions = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+    return await fetchData(url, fetchOptions);
+  };
+  const getLikesByUser = async (id, token) => {
+    const url = import.meta.env.VITE_MEDIA_API + '/likes/byuser/' + id;
+    const fetchOptions = {
+      method: 'GET',
+      headers: {
+        Authorization: 'Bearer: ' + token,
+      },
+    };
     return await fetchData(url, fetchOptions);
   };
 
-  return {postLike, deleteLike};
+  return {postLike, deleteLike, getLikesByMediaId, getLikesByUser};
 }
 
 export {useAuthentication, useMedia, useUser, useFile, useLike};

@@ -11,7 +11,6 @@ const UserProvider = ({children}) => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // login, logout and autologin functions are here instead of components
   const handleLogin = async (credentials) => {
     const loginResult = await postLogin(credentials);
     setUser(loginResult.user);
@@ -31,7 +30,6 @@ const UserProvider = ({children}) => {
     }
   };
 
-  // handleAutoLogin is used when the app is loaded to check if there is a valid token in local storage
   const handleAutoLogin = async () => {
     try {
       const token = localStorage.getItem('token');

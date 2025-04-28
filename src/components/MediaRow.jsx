@@ -1,21 +1,19 @@
 import PropTypes from 'prop-types';
 import {Link, useNavigate} from 'react-router';
 import {useUserContext} from '../hooks/contextHooks';
-import {useMedia} from '../hooks/apiHooks';
 import {useState} from 'react';
 import Likes from './Likes.jsx';
 
 function MediaRow(props) {
   const {user} = useUserContext();
-  const {deleteMedia, modifyMedia} = useMedia();
+
   const navigate = useNavigate();
-  const {item} = props;
+  const {item, deleteMedia, modifyMedia} = props;
 
   const [isEditing, setIsEditing] = useState(false);
   const [editedItem, setEditedItem] = useState({...item});
 
   function handleDelete() {
-    console.log(item.media_id);
     deleteMedia(item.media_id);
     navigate('/');
   }
@@ -104,7 +102,7 @@ function MediaRow(props) {
           <td className="border border-stone-300">{item.filesize}</td>
           <td className="border border-stone-300">{item.media_type}</td>
           <td className="flex gap-2 border border-stone-300 p-4">
-            <Likes />
+            <Likes item={item} />
             <Link
               to="/single"
               state={{item}}
@@ -114,20 +112,30 @@ function MediaRow(props) {
             </Link>
             {user && (
               <>
-                <button
-                  className="hover:bg-sky-500 hover:text-stone-950"
-                  type="button"
-                  onClick={handleEditToggle}
-                >
-                  Edit
-                </button>
-                <button
-                  className="hover:bg-red-600 hover:text-stone-950"
-                  type="button"
-                  onClick={handleDelete}
-                >
-                  Delete
-                </button>
+                {user.user_id === item.user_id && (
+                  <>
+                    <button
+                      className="hover:bg-sky-500 hover:text-stone-950"
+                      type="button"
+                      onClick={handleEditToggle}
+                    >
+                      Edit
+                    </button>
+                    <button
+                      className="hover:bg-red-600 hover:text-stone-950"
+                      type="button"
+                      onClick={() => {
+                        if (
+                          prompt('Are you sure you want to delete this media?')
+                        ) {
+                          handleDelete();
+                        }
+                      }}
+                    >
+                      Delete
+                    </button>
+                  </>
+                )}
               </>
             )}
           </td>
