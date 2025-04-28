@@ -7,13 +7,14 @@ import '../index.css';
 function Home() {
   const [selectedItem, setSelectedItem] = useState(null);
   const mediaArray = useMedia().mediaArray;
+  const {deleteMedia, modifyMedia} = useMedia();
 
   return (
     <>
       <h2>My Media</h2>
       <table>
         <thead>
-          <tr>
+          <tr className="*:border-2 *:border-stone-200 *:p-4">
             <th>Thumbnail</th>
             <th>Title</th>
             <th>Description</th>
@@ -29,6 +30,8 @@ function Home() {
               key={item.media_id}
               item={item}
               setSelectedItem={setSelectedItem}
+              deleteMedia={deleteMedia}
+              modifyMedia={modifyMedia}
             />
           ))}
         </tbody>

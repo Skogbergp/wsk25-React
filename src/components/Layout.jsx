@@ -13,28 +13,29 @@ export default function Layout() {
   return (
     <div>
       <nav>
-        <ul>
+        <ul className='overflow-hidden bg-stone-700 text-stone-50 flex justify-end'>
+
           <li>
-            <Link to="/">Home</Link>
+            <Link className="block text-stone-50 text-center p-4 hover:bg-stone-500" to="/">Home</Link>
           </li>
           {user && (
             <>
               <li>
-                <Link to="/profile">Profile</Link>
+                <Link className="block text-stone-50 text-center p-4 hover:bg-stone-500" to="/profile">Profile</Link>
               </li>
 
               <li>
-                <Link to="/upload">Upload</Link>
+                <Link className="block text-stone-50 text-center p-4 hover:bg-stone-500" to="/upload">Upload</Link>
               </li>
 
               <li>
-                <Link to="/logout">Logout</Link>
+                <Link className="block text-stone-50 text-center p-4 hover:bg-stone-500" to="/logout">Logout</Link>
               </li>
             </>
           )}
           {!user && (
             <li>
-              <Link to="/login">Login</Link>
+              <Link className="block text-stone-50 text-center p-4 hover:bg-stone-500" to="/login">Login</Link>
             </li>
           )}
         </ul>

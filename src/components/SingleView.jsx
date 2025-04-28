@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import Likes from './Likes';
 
 function SingleView(props) {
   const {item, setSelectedItem} = props;
@@ -8,7 +9,7 @@ function SingleView(props) {
   return (
     <>
       {item && (
-        <dialog open={item}>
+        <dialog open={item} className="fixed top-1/2 left-1/2">
           {item.media_type.includes('video') ? (
             <video
               src={item.filename}
@@ -26,6 +27,7 @@ function SingleView(props) {
           <p>{item.description}</p>
           <p>Created at: {new Date(item.created_at).toLocaleString()}</p>
           <p>Filesize: {item.filesize} bytes</p>
+          <Likes item={item} />
           <button onClick={closeDialog}>Close</button>
         </dialog>
       )}

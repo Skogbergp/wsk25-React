@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
 import {useLocation, useNavigate} from 'react-router';
+import Likes from '../components/Likes';
 
 function Single() {
   const navigate = useNavigate();
   const {state} = useLocation();
-  console.log('state', state);
+
   const item = state.item;
   return (
     <>
@@ -26,6 +27,7 @@ function Single() {
       <p>Created at: {new Date(item.created_at).toLocaleString()}</p>
       <p>Uploaded by: {item.username}</p>
       <p>Filesize: {item.filesize} bytes</p>
+      <Likes item={item} />
       <button onClick={() => navigate(-1)}>Go Back</button>
     </>
   );

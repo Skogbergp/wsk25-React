@@ -2,6 +2,7 @@ import {useState} from 'react';
 import useForm from '../hooks/formHooks';
 import {useFile, useMedia} from '../hooks/apiHooks';
 import {useNavigate} from 'react-router';
+import TextInput from '../components/ui/TextInput';
 
 const Upload = () => {
   const initValues = {
@@ -15,20 +16,20 @@ const Upload = () => {
 
   const handleFileChange = (evt) => {
     if (evt.target.files) {
-      console.log(evt.target.files[0]);
-
       setFile(evt.target.files[0]);
     }
   };
   const doUpload = async () => {
     try {
       const token = localStorage.getItem('token');
+
       const fileResult = await postFile(file, token);
 
-      await postMedia(fileResult.data, inputs, token);
+      const result = await postMedia(fileResult.data, inputs, token);
+
       navigate('/');
     } catch (e) {
-      console.log(e.message);
+      console.error(e.message);
     }
   };
 
@@ -40,24 +41,23 @@ const Upload = () => {
     <>
       <h1>Upload</h1>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="title">Title</label>
-          <input
-            name="title"
-            type="text"
-            id="title"
-            onChange={handleInputChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="description">Description</label>
-          <textarea
-            name="description"
-            rows={5}
-            id="description"
-            onChange={handleInputChange}
-          ></textarea>
-        </div>
+        <TextInput
+          label="Title"
+          name="title"
+          type="text"
+          id="title"
+          onChange={handleInputChange}
+        />
+
+        <TextInput
+          label="Description"
+          name="description"
+          type="textarea"
+          rows={5}
+          id="description"
+          onChange={handleInputChange}
+        />
+
         <div>
           <label htmlFor="file">File</label>
           <input
@@ -77,7 +77,11 @@ const Upload = () => {
           alt="preview"
           width="200"
         />
-        <button type="submit" disabled={!(file && inputs.title?.length > 3)}>
+        <button
+          className="rounded bg-amber-400 text-stone-700"
+          type="submit"
+          disabled={!(file && inputs.title?.length > 3)}
+        >
           Upload
         </button>
       </form>

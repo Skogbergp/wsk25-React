@@ -1,5 +1,6 @@
 import {useUserContext} from '../hooks/contextHooks.jsx';
 import useForm from '../hooks/formHooks';
+import TextInput from './ui/TextInput.jsx';
 
 function LoginForm() {
   const {handleLogin} = useUserContext();
@@ -26,27 +27,28 @@ function LoginForm() {
     <>
       <h1>Login</h1>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="loginuser">Username</label>
-          <input
-            name="username"
-            type="text"
-            id="loginuser"
-            onChange={handleInputChange}
-            autoComplete="username"
-          />
-        </div>
-        <div>
-          <label htmlFor="loginpassword">Password</label>
-          <input
-            name="password"
-            type="password"
-            id="loginpassword"
-            onChange={handleInputChange}
-            autoComplete="current-password"
-          />
-        </div>
-        <button type="submit">Login</button>
+        <TextInput
+          label="Username"
+          name="username"
+          type="text"
+          id="loginuser"
+          onChange={handleInputChange}
+        />
+
+        <TextInput
+          label="Password"
+          name="password"
+          type="password"
+          id="loginpassword"
+          onChange={handleInputChange}
+        />
+
+        <button
+          className="rounded border-2 bg-stone-400 text-stone-800"
+          type="submit"
+        >
+          Login
+        </button>
       </form>
     </>
   );
